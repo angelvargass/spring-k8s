@@ -6,7 +6,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: mvn dependency:go-offline
+      - run: ./mvnw dependency:go-offline
       - run: ./mvnw test
 
 workflows:
