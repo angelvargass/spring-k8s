@@ -7,10 +7,10 @@ jobs:
     steps:
       - checkout
       - run:
-          mvn test
+          ./mvnw test
 
 workflows:
-  say-hello-workflow:
+  run-tests-workflow:
     jobs:
       - run-tests:
           filters:
