@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: chmod +x mvnw
       #- run: ./mvnw dependency:go-offline
-      - run: ./mvnw test
+      - run: ./mvnw -DargLine="-Dspring.profiles.active=test" test
 
 workflows:
   run-tests-workflow:
