@@ -3,11 +3,12 @@ version: 2.1
 jobs:
   run-tests:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/openjdk:17.0.3
     steps:
       - checkout
-      - run: chmod +x mvnw dependency:go-offline
-      - run: chmod +x mvnw test
+      - run: chmod +x mvnw
+      - run: ./mvnw dependency:go-offline
+      - run: ./mvnw test
 
 workflows:
   run-tests-workflow:
