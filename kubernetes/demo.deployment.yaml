@@ -1,0 +1,40 @@
+#DEPLOYMENT DEFINITION
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-demo
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: spring-demo
+  template:
+    metadata:
+      labels:
+        app: spring-demo
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: spring-demo-api
+          image: angelvs/spring-demo:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENV_SPRING_PROFILE
+              value: test
+          imagePullPolicy: Always
+
+---
+#SERVICE DEFINITION
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-demo
+spec:
+  selector:
+    app: spring-demo
+  ports:
+    - port: 81
+      targetPort: 8081
+  type: LoadBalancer
